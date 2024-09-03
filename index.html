@@ -1,0 +1,68 @@
+<!--Sass Sept 3, 2024-->
+<!--store data with Sass Variable-->
+<!--One feature of Sass that's different than CSS is it uses variables.
+they are declared and set to store data, similar to JavaScript.
+in JavaScript, varables are defiined using the let and const keywords, in Sass
+variables start with a $ folled bythe variable name.
+                here are a couple examples:
+                $main-fonts:Arial, sans-serif;
+                $heading-color: green;
+                & also to use the variables:
+                h1{
+                font-family:$main-fonts;
+                color:$heading-color;
+                }-->
+<style type="text/scss">
+    /* create reusable css with mixins*/
+    /*in Sass a mixin is a group of CSS declarations that can be reused throught the
+    style sheet. the defn start with the @mixin at rule, followed by a custom name, 
+    you apply the mixin also using @include*/
+    
+    @mixin shape($w, $h, $bg-color){
+  width:$w;
+  height:$h;
+  background-color:$bg-color;
+}
+
+#square{
+@include shape(50px, 50px, red);
+}
+#rect-a {
+  @include shape(100px, 50px, blue);
+}
+
+#rect-b {
+  @include shape(50px, 100px,orange)
+}
+/*use @if and @else to add logic to your styles*/
+/*the @if directive in Sass is useful to rest for a specific case it works just like the if keyword
+in the JavaScript.*/
+/*example; create a mixin called border-stroke that takes a paramerer $val. the mixin should check for the following
+conditions using @if, @else if, & @else directives
+        light - 1px solid black
+        medium - 3px solid black
+        heavy - 6px solid black*/
+@mixin border-stroke($val){
+    @if $val == light{
+        border: 1px solid black;
+    }
+    @else if $val == medium{
+        boder:3px solid black;
+    }
+    @else if $val == heavy{
+        border:6px solid black;
+    }
+    else{
+        border:none;
+    }
+}
+/*use @for to create a Sass loop */
+/*The @for directive adds styles in a loop, very similar to a for loop ini javascript.*/
+/*@for is used in two ways: 'start through end' or 'start to end' */
+@for $j from 1 through 5{
+    .text-#{$j} {font-size:15px * $j;}
+}
+    </style>
+
+
+
